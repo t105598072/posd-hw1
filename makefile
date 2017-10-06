@@ -8,17 +8,17 @@ else
 endif
 	
 mainTerm.o: mainTerm.cpp utTerm.h number.h atom.h
-	g++ -std=c++11 -c mainTerm.cpp
+	g++ -std=gnu++0x -c mainTerm.cpp
 number.o: number.cpp number.h atom.h variable.h
-	g++ -std=c++11 -c number.cpp
+	g++ -std=gnu++0x -c number.cpp
 atom.o: atom.cpp atom.h number.h variable.h
-	g++ -std=c++11 -c atom.cpp
+	g++ -std=gnu++0x -c atom.cpp
 variable.o: variable.cpp variable.h number.h atom.h
-	g++ -std=c++11 -c variable.cpp
+	g++ -std=gnu++0x -c variable.cpp
 
 clean:	
 ifeq (${OS}, Windows_NT)
-	del *.o *.exe
+	del *.o *.exe hw2
 else
 	rm -f *.o hw2
 endif
