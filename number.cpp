@@ -13,7 +13,9 @@ Number::Number(int n):n(n){
 string Number::symbol() const{ return _symbol;}
 string Number::value() const { return symbol();}
 string Number::value(Variable v){ return v.value();}
-
+bool Number::match(Term & term) const{
+	return true;
+}
 bool Number::match(Number a){
 	if(symbol()==a.symbol()){
 		_symbolValue = a.symbol();

@@ -13,14 +13,15 @@ class Number: public Term{
 public:
 	Number(int n);
 	string _symbolValue; 
-
+	
+	bool match(Term &) const;
 	bool match(Number a);
 	bool match(Atom a);
 	bool match(Variable v);
 
 	string value(Variable v);
-	string value() const;
-	string symbol() const;
+	string value()const;
+	string symbol()const;
 
 private:
 	int n;

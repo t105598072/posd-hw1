@@ -12,8 +12,8 @@ class Atom : public Term{
 public:
 	Atom (string s);
 	string value() const;
-	string symbol() const;
-
+	string symbol()const;
+	bool match(Term &) const;
 	bool match(Number n);
 	bool match(Variable *v);
 

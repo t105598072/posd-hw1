@@ -6,6 +6,9 @@ Atom::Atom (string s):_symbol(s) {}
 string Atom::value()const {return symbol();}
 string Atom::symbol()const {return _symbol;}
 
+bool Atom::match(Term & term) const{
+	return true;
+}
 bool Atom::match(Number n){return false;}
 bool Atom::match(Variable* v){
 	v->getvalue(_symbol);
