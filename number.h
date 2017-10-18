@@ -4,24 +4,26 @@
 #include <string>
 #include <sstream>
 #include "atom.h"
+#include "term.h"
 #include "variable.h"
 
 using namespace std;
 
-class Number{
+class Number: public Term{
 public:
-	string _symbolValue;
-
 	Number(int n);
-	//bool operator == (Number a) {return _symbol == a._symbol;}
-	string match(Number a);
-	string match(Atom a);
-	string match(Variable v);
+	string _symbolValue; 
+
+	bool match(Number a);
+	bool match(Atom a);
+	bool match(Variable v);
 
 	string value(Variable v);
-	string value();
-	string symbol();
+	string value() const;
+	string symbol() const;
+
 private:
-	int _symbol;
+	int n;
+	string _symbol;
 };
 #endif

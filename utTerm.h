@@ -20,28 +20,28 @@ TEST (Number, symbol) {
 TEST (Number, matchSuccess) {
 	Number n1(25);
 	Number n2(25);
-	ASSERT_EQ("true", n1.match(n2));	
+	EXPECT_TRUE(n1.match(n2));	
 }
 //?- 25=0.
 //false.
 TEST (Number, matchFailureDiffValue) {
 	Number n1(25);
 	Number n2(0);
-	ASSERT_EQ("false", n1.match(n2));	
+	EXPECT_FALSE(n1.match(n2));	
 }
 //?- 25=tom.
 //false.
 TEST (Number, matchFailureDiffConstant) {
 	Number n1(25);
 	Atom tom("tom");
-	ASSERT_EQ("false", n1.match(tom));
+	EXPECT_FALSE(n1.match(tom));
 }
 //?- 25=X.
 //true.
 TEST (Number, matchSuccessToVar) {
 	Number n1(25);
 	Variable X("X");
-	ASSERT_EQ("true", n1.match(X));
+	EXPECT_TRUE(n1.match(X));
 }
 
 //?- tom=25.
@@ -49,7 +49,7 @@ TEST (Number, matchSuccessToVar) {
 TEST (Atom, matchFailureDiffConstant) {
 	Atom tom("tom");
 	Number n1(25);
-	ASSERT_EQ("false", tom.match(n1));
+	EXPECT_FALSE(tom.match(n1));
 }
 
 // ?- tom = X.
@@ -67,7 +67,7 @@ TEST (Atom, matchSuccessToVarInstantedToDiffConstant) {
 	Atom tom("tom");
 	Variable X("X");
 	tom.match(&X);
-	ASSERT_EQ("true", tom.checkmatch(&X));
+	EXPECT_TRUE(tom.checkmatch(&X));
 }
 
 // ?- X=jerry, tom=X.
@@ -77,7 +77,7 @@ TEST (Atom, matchFailureToVarInstantedToDiffConstant) {
 	Atom jerry("jerry");
 	Variable X("X");
 	jerry.match(&X);
-	ASSERT_EQ("false", tom.checkmatch(&X));
+	EXPECT_FALSE(tom.checkmatch(&X));
 }
 
 // ?- X = 5.
@@ -96,7 +96,7 @@ TEST (Var, matchFailureToTwoDiffNumbers) {
 	Number n1(25);
 	Number n2(100);
 	X.match(&n1);
-	ASSERT_EQ("false", X.checkmatch(&n2));
+	EXPECT_FALSE(X.checkmatch(&n2));
 }
 
 // ?- X=tom, X= 25.
@@ -106,7 +106,7 @@ TEST (Var, matchSuccessToAtomThenFailureToNumber) {
 	Atom tom("tom");
 	Number n1(25);	
 	X.match(&tom);
-	ASSERT_EQ("false", X.checkmatch(&n1));
+	EXPECT_FALSE(X.checkmatch(&n1));
 }
 //?- tom=X, 25=X.
 //false.
@@ -115,7 +115,7 @@ TEST (Var, matchSuccessToAtomThenFailureToNumber2) {
 	Atom tom("tom");
 	Number n1(25);	
 	tom.match(&X);
-	ASSERT_EQ("false", X.checkmatch(&n1));		
+	EXPECT_FALSE(X.checkmatch(&n1));		
 }
 //?- X=tom, X=tom.
 //true.
@@ -124,6 +124,6 @@ TEST(Var, reAssignTheSameAtom){
 	Atom tom1("tom");
 	Atom tom2("tom");	
 	X.match(&tom1);
-	ASSERT_EQ("true", X.checkmatch(&tom2));
+	EXPECT_TRUE(X.checkmatch(&tom2));
 }
 #endif

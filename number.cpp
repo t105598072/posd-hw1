@@ -3,29 +3,27 @@
 #include "variable.h"
 
 
-Number::Number(int n):_symbol(n){}
-
-string Number::symbol(){
+Number::Number(int n):n(n){
 	stringstream ss;
-	ss << _symbol;
+	ss << n;
 	string s = ss.str();
-	return s;
+	_symbol =  s;
 }
 
-string Number::match(Number a){
+string Number::symbol() const{ return _symbol;}
+string Number::value() const { return symbol();}
+string Number::value(Variable v){ return v.value();}
+
+bool Number::match(Number a){
 	if(symbol()==a.symbol()){
 		_symbolValue = a.symbol();
-		return "true";
+		return true;
 	}
 	else
-		return "false";
+		return false;
 }
-// if Number match Atom must return false
-string Number::match(Atom a){return "false";}
-// if Number match Variable must return true and get the value
-string Number::match(Variable v){
+bool Number::match(Atom a){return false;}
+bool Number::match(Variable v){
 	_symbolValue = value(value(v));	
-	return "true";
+	return true;
 }
-string Number::value(){return symbol();}
-string Number::value(Variable v){return v._symbol;}

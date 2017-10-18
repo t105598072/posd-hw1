@@ -15,6 +15,10 @@ atom.o: atom.cpp atom.h number.h variable.h
 	g++ -std=gnu++0x -c atom.cpp
 variable.o: variable.cpp variable.h number.h atom.h
 	g++ -std=gnu++0x -c variable.cpp
+#variable.o: variable.cpp struct.h atom.h number.h
+#	g++ -std=gnu++0x -c variable.cpp
+
+
 
 clean:	
 ifeq (${OS}, Windows_NT)
