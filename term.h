@@ -9,7 +9,7 @@ class Term {
 public:
 	virtual string symbol() const = 0;
 	virtual string value() const = 0;
-	virtual bool match(Term &)const = 0;
+	virtual bool match(Term &) = 0;
 };
 
 #endif

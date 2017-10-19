@@ -14,9 +14,9 @@ TEST(Variable , matching){
   Atom tom("tom");
   Variable X("X");
   X.match(tom);
-  ASSERT_EQ( "tom", X.value());
+  ASSERT_EQ( "tom", X.valueTerm());
 }
-
+/*
 TEST (Variable , haveValue){
   Atom tom ("tom");
   Atom jerry ("jerry");
@@ -28,19 +28,26 @@ TEST (Variable , haveValue){
 // ?- X=2.7182.
 // X=2.7182
 TEST(Variable , numE_to_varX){
-
+  Number E(2.7182);
+  Variable X("X");
+  ASSERT_TRUE(X.match(E));
+  ASSERT_EQ( "2.7182" , X.valueTerm());
 }
 
 // ?- X=Y, X=1.
 // Y=1
 TEST (Variable, varY_to_varX_and_num1_to_varX) {
-  
+  Variable X("X");//v1
+  Variable Y("Y");//v2
+  Number num1(1); 
+  ASSERT_TRUE(X.match(Y));
+  ASSERT_TRUE(X.match(num1));
+  ASSERT_EQ( "1" , Y.valueTerm());
 }
-  
+*/
 // ?- X=Y, Y=1.
 // X=1
 TEST (Variable, varY_to_varX_and_num1_to_varY) {
-  
 }
 
 // ?- X=X, X=1.
