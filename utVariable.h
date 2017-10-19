@@ -16,7 +16,7 @@ TEST(Variable , matching){
   X.match(tom);
   ASSERT_EQ( "tom", X.valueTerm());
 }
-/*
+
 TEST (Variable , haveValue){
   Atom tom ("tom");
   Atom jerry ("jerry");
@@ -44,7 +44,7 @@ TEST (Variable, varY_to_varX_and_num1_to_varX) {
   ASSERT_TRUE(X.match(num1));
   ASSERT_EQ( "1" , Y.valueTerm());
 }
-*/
+
 // ?- X=Y, Y=1.
 // X=1
 TEST (Variable, varY_to_varX_and_num1_to_varY) {
