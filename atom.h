@@ -11,15 +11,20 @@ class Variable;
 class Atom : public Term{
 public:
 	Atom (string s);
+ 	Term *t;
 	string value() const;
-	string symbol()const;
-	bool match(Term &) const;
-	bool match(Number n);
-	bool match(Variable *v);
+	string symbol()const;	
+
+	void keySwitch();
+
+	bool match(Term &);
+	//bool match(Number n);
+	//bool match(Variable *v);
 
 	bool checkmatch(Variable *v);
 
 private:
+	int key = 0;
 	string _symbol;
 	string _value;
 };

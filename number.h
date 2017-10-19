@@ -11,10 +11,10 @@ using namespace std;
 
 class Number: public Term{
 public:
-	Number(int n);
+	Number(double n);
 	string _symbolValue; 
-	
-	bool match(Term &) const;
+
+	bool match(Term &);
 	bool match(Number a);
 	bool match(Atom a);
 	bool match(Variable v);
@@ -24,7 +24,7 @@ public:
 	string symbol()const;
 
 private:
-	int n;
+	double n;
 	string _symbol;
 };
 #endif

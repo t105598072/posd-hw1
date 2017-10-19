@@ -5,27 +5,42 @@
 Variable::Variable(string s):_symbol(s){
 	_value = symbol();
 }
-string Variable::symbol() const{ return _symbol;}
-string Variable::value() const { return _value;}
+string Variable::symbol() const{ return _value;}
+string Variable::value() const { return symbol();}
+string Variable::valueTerm(){ return _valueTerm;}
 void Variable::getvalue(string symbol){ _value = symbol;}
 
-int Variable::keySwitch(){
+void Variable::keySwitch(){
 	if(key==0)
-		return key=1;
+		key=1;
 	else
-		return key=0;
+		key=0;
 }
 
-bool Variable::match(Term & term) const{
-	Variable *v = dynamic_cast<Variable *>(&term);
-	//if transfer sucess
+bool Variable::match(Term & term) {
 	if(&term !=NULL){
-		if(key != 1){}
-
+		// first
+		if(key == 0){
+			t = &term;
+			_valueTerm = t->value();
+			v.push_back(t);
+			keySwitch();
+			return true;
+		}
+		//
+		else if(key==1 && t!=&term)  {
+			_valueTerm = t->value();
+			v.push_back(t);
+			return t->value() == term.value();
+		}
+		else
+			return t->value() == term.value();
 	}
+	else
+		return t->value() == term.value();
 }
 
-
+/*
 bool Variable::match(Number* n){
 	_value = n->value();
 	return true;	
@@ -38,7 +53,7 @@ bool Variable::match(Atom* a){
 	_value = a->value();
 	return true;
 }
-
+*/
 bool Variable::checkmatch(Number *n){
 	if(_value == n->value())
 		return true;
