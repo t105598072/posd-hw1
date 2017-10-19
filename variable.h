@@ -27,6 +27,8 @@ public:
 
 	
 	bool match(Term &);
+	bool match(Variable &);
+
 	//bool match(Number*);
 	//bool match(Atom);	
 	//bool match(Atom*);
@@ -36,10 +38,8 @@ public:
 
 private:
 	string _value;
-	string _valueTerm;
 	int key = 0;
-	vector<Term*> v;
-
+	string _valueterm;
 };
 
 #endif

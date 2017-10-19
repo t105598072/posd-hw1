@@ -2,42 +2,35 @@
 #include "number.h"
 #include "variable.h"
 
-Variable::Variable(string s):_symbol(s){
-	_value = symbol();
-}
-string Variable::symbol() const{ return _value;}
+Variable::Variable(string s):_symbol(s){}
+string Variable::symbol() const{ return _valueterm;}
 string Variable::value() const { return symbol();}
-string Variable::valueTerm(){ return _valueTerm;}
+string Variable::valueTerm(){ return _valueterm;}
 void Variable::getvalue(string symbol){ _value = symbol;}
 
 void Variable::keySwitch(){
-	if(key==0)
-		key=1;
-	else
-		key=0;
+	if(key==0)	key=1;
+	else		key=0;
 }
 
 bool Variable::match(Term & term) {
-	if(&term !=NULL){
-		// first
-		if(key == 0){
-			t = &term;
-			_valueTerm = t->value();
-			v.push_back(t);
-			keySwitch();
-			return true;
-		}
-		//
-		else if(key==1 && t!=&term)  {
-			_valueTerm = t->value();
-			v.push_back(t);
-			return t->value() == term.value();
-		}
-		else
-			return t->value() == term.value();
+
+	if(key == 0){
+		t = &term;
+		_valueterm = t->value();
+		keySwitch();
+		return true;
 	}
-	else
+	else {
+		_valueterm = t->value();
 		return t->value() == term.value();
+	}
+
+}
+bool Variable::match(Variable & var){
+	if(var.symbol() == _symbol)
+		return true;
+
 }
 
 /*
