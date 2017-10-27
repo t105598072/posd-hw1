@@ -1,30 +1,24 @@
-#ifndef NUNBER_H
+#ifndef NUMBER_H
 #define NUMBER_H
-#include <iostream>
+
 #include <string>
+#include <vector>
 #include <sstream>
-#include "atom.h"
 #include "term.h"
 #include "variable.h"
-
 using namespace std;
 
-class Number: public Term{
+class Number : public Term{
 public:
-	Number(double n);
-	string _symbolValue; 
+	Number(double n1);
+	bool match(Term &term);
+	bool match(List &list);
 
-	bool match(Term &);
-	bool match(Number a);
-	bool match(Atom a);
-	bool match(Variable v);
-
-	string value(Variable v);
-	string value()const;
-	string symbol()const;
-
+	string value() const;
+	string symbol() const;
 private:
-	double n;
-	string _symbol;
+	string _value;
+	string _symbol; 	
+	double n1;
 };
 #endif

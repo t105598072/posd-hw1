@@ -1,28 +1,29 @@
-all: hw3
+all: hw4
 
-hw3: mainTerm.o number.o atom.o variable.o
+hw4: mainList.o number.o atom.o variable.o list.o struct.o
 ifeq (${OS}, Windows_NT)
-	g++ -o hw3 mainTerm.o number.o atom.o variable.o -lgtest
+	g++ -o hw4 mainList.o number.o atom.o variable.o list.o struct.o -lgtest
 else
-	g++ -o hw3 mainTerm.o number.o atom.o variable.o -lgtest -lpthread
+	g++ -o hw4 mainList.o number.o atom.o variable.o list.o struct.o -lgtest -lpthread
 endif
 	
-mainTerm.o: mainTerm.cpp utTerm.h utVariable.h number.h atom.h variable.h
-	g++ -std=gnu++0x -c mainTerm.cpp 
+mainList.o: mainList.cpp utTerm.h utVariable.h utList.h number.h atom.h variable.h list.h struct.o
+	g++ -std=gnu++0x -c mainList.cpp 
 number.o: number.cpp number.h atom.h variable.h
 	g++ -std=gnu++0x -c number.cpp
 atom.o: atom.cpp atom.h number.h variable.h
 	g++ -std=gnu++0x -c atom.cpp
-variable.o: variable.cpp variable.h number.h atom.h
+variable.o: variable.cpp variable.h number.h atom.h list.h
 	g++ -std=gnu++0x -c variable.cpp
-#variable.o: variable.cpp struct.h atom.h number.h
-#	g++ -std=gnu++0x -c variable.cpp
-
+struct.o: struct.cpp struct.h atom.h number.h list.h
+	g++ -std=gnu++0x -c struct.cpp
+list.o: list.cpp list.h term.h variable.h
+	g++ -std=gnu++0x -c list.cpp
 
 
 clean:	
 ifeq (${OS}, Windows_NT)
-	del *.o *.exe hw3
+	del *.o *.exe hw4
 else
-	rm -f *.o hw3
+	rm -f *.o hw4
 endif

@@ -1,9 +1,7 @@
 #include "number.h"
-#include "atom.h"
-#include "variable.h"
 
 
-Number::Number(double n1):n(n1){
+Number::Number(double n1){
 	stringstream ss;
 	ss << n1;
 	string s = ss.str();
@@ -12,21 +10,10 @@ Number::Number(double n1):n(n1){
 
 string Number::symbol() const{ return _symbol;}
 string Number::value() const { return symbol();}
-string Number::value(Variable v){ return v.value();}
 
-bool Number::match(Term & term){
-	return true;
+bool Number::match(Term &term){
+	return term.symbol() == _symbol;
 }
-bool Number::match(Number a){
-	if(symbol()==a.symbol()){
-		_symbolValue = a.symbol();
-		return true;
-	}
-	else
-		return false;
-}
-bool Number::match(Atom a){return false;}
-bool Number::match(Variable v){
-	_symbolValue = value(value(v));	
-	return true;
+bool Number::match(List &list){
+	return false;
 }

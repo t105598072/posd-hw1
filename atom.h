@@ -1,34 +1,23 @@
 #ifndef ATOM_H
 #define ATOM_H
-#include <iostream>
-#include <string>
-#include "term.h"
-using namespace std;
 
-class Term;
-class Number;
-class Variable;
+#include "term.h"
+#include <string>
+#include <sstream>
+using std::string;
+
 class Atom : public Term{
 public:
-	Atom (string s);
- 	Term *t;
-	string value() const;
-	string symbol()const;	
+  Atom(string s);
 
-	void keySwitch();
+  string value() const;
+  string symbol() const;
 
-	bool match(Term &);
-	//bool match(Number n);
-	//bool match(Variable *v);
-
-	bool checkmatch(Variable *v);
+  bool match(Term &term);
 
 private:
-	int key = 0;
-	string _symbol;
-	string _value;
+  string _value;
+  string _symbol;
 };
 
 #endif
-
-
